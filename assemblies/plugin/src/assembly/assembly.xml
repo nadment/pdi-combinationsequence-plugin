@@ -27,7 +27,7 @@
 		 	<useProjectArtifact>false</useProjectArtifact>
 		 	<scope>runtime</scope>			
 			<includes>
-				<include>org.pentaho.di.plugins:pdi-extension-combinationsequence-core:jar</include>
+				<include>org.pentaho.di.plugins:pdi-combinationsequence-core:jar</include>
 			</includes>
 		</dependencySet>
 	</dependencySets>
