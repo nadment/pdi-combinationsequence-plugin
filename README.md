@@ -23,6 +23,18 @@ Pentaho Data Integration 8.0 or above
 
 TODO:
 
+ Sequence mode example
+ 
+ Field1 | Field2 | RESET | INCREMENT
+ -------|--------|-------|----------
+ A | B | 1 | 1 
+ A | B | 2 | 1
+ A | B | 3 | 1
+ A | C | 1 | 2
+ C | C | 1 | 3
+ C | C | 2 | 3
+ D | C | 1 | 4 
+
 # License #
 
 Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
