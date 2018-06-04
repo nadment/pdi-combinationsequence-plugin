@@ -71,7 +71,7 @@ import org.w3c.dom.Node;
 																																																																													// Transform
 																																																																													// step
 																																																																													// category
-		documentationUrl = "https://help.pentaho.com")
+		documentationUrl = "https://github.com/nadment/pdi-combinationsequence/wiki")
 
 @InjectionSupported(localizationPrefix = "CombinationSequenceMeta.Injection.")
 
