@@ -15,7 +15,7 @@ Pentaho Data Integration 8.0 or above
 
 ## Manual Install ##
 
-1. Place the pdi-as400 folder in the ${DI\_HOME}/plugins/ directory
+1. Place the pdi-combinationsequence folder in the ${DI\_HOME}/plugins/ directory
 2. Restart Spoon
 
 
