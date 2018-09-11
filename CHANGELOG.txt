@@ -1,0 +1,2 @@
+1.0.0 # nadment 2018/09/11
+- Initial release
