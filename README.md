@@ -5,7 +5,7 @@
 
 This plugin provide PDI step that adds a sequence value which resets or increment each time a value changes in the list of specified fields.
 
-![Image](https://github.com/nadment/pdi-combinationsequence-plugin/blob/master/src/main/resources/combinationsequence.svg)
+![Image](https://github.com/nadment/pdi-combinationsequence-plugin/blob/master/src/main/resources/combinationsequence.png)
 
 ## How to install
 
