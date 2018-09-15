@@ -46,4 +46,4 @@ This plugin for PDI is provided “as is”, without any warranties, expressed or im
 
 ## License
 
-Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
+Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).

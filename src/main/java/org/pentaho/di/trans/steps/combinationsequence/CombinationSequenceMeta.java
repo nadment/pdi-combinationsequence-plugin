@@ -67,11 +67,8 @@ import org.w3c.dom.Node;
  *    D       C       1      4
  */
 
-@Step(id = "CombinationSequence", image = "combinationsequence.svg", i18nPackageName = "org.pentaho.di.trans.steps.combinationsequence", name = "CombinationSequence.Name", description = "CombinationSequence.Description", categoryDescription = "i18n:org.pentaho.di.trans.step:BaseStep.Category.Experimental", // TODO:
-																																																																													// Transform
-																																																																													// step
-																																																																													// category
-		documentationUrl = "https://github.com/nadment/pdi-combinationsequence/wiki")
+@Step(id = "CombinationSequence", image = "combinationsequence.svg", i18nPackageName = "org.pentaho.di.trans.steps.combinationsequence", name = "CombinationSequence.Name", description = "CombinationSequence.Description", categoryDescription = "i18n:org.pentaho.di.trans.step:BaseStep.Category.Transform",
+		documentationUrl = "https://github.com/nadment/pdi-combinationsequence-plugin/wiki")
 
 @InjectionSupported(localizationPrefix = "CombinationSequenceMeta.Injection.")
 
