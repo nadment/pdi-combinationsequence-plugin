@@ -19,6 +19,14 @@
 				<include>${project.artifactId}-${project.version}.jar</include>
 			</includes>
 		</fileSet>
+		<fileSet>
+			<directory>assembly</directory>
+			<outputDirectory>${file.separator}</outputDirectory>
+			<filtered>true</filtered>
+			<includes>
+				<include>version.xml</include>
+			</includes>
+		</fileSet>		
 	</fileSets>
 
 	<dependencySets>

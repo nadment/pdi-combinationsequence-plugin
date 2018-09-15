@@ -8,6 +8,7 @@
 		<version>8.1.0.0-SNAPSHOT</version>
 	</parent>
 
+	<name>PDI Combination sequence Plugin</name>
 	<groupId>org.pentaho.di.plugins</groupId>
 	<artifactId>pdi-combinationsequence-plugin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -29,6 +30,8 @@
 	</scm>
 
 	<properties>
+	    <license.licenseName>apache_v2</license.licenseName>
+	    
 		<pdi.version>8.1.0.0-SNAPSHOT</pdi.version>
 		<pdi.home>C:\pentaho\data-integration</pdi.home>
 
@@ -90,7 +93,7 @@
 							<finalName>${project.artifactId}-${project.version}</finalName>
 							<appendAssemblyId>false</appendAssemblyId>
 							<descriptors>
-								<descriptor>src/main/assembly/assembly.xml</descriptor>
+								<descriptor>assembly/plugin.xml</descriptor>
 							</descriptors>
 						</configuration>
 					</execution>
@@ -249,4 +252,7 @@
 
 	</dependencies>
 
+	<organization>
+		<name>Nicolas ADMENT</name>
+	</organization>
 </project>
