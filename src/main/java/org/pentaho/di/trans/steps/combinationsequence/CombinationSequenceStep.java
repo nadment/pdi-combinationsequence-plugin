@@ -1,10 +1,4 @@
-/*! ******************************************************************************
- *
- * Pentaho Data Integration
- *
- * Copyright (C) 2002-2016 by Pentaho : http://www.pentaho.com
- *
- *******************************************************************************
+/*******************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with
@@ -40,11 +34,12 @@ import org.pentaho.di.trans.step.StepMetaInterface;
  * Add sequence to each input row.
  *
  * @author Nicolas ADMENT
- * @since 30-06-2017
+ * @since 30-06-2018
  */
 
 public class CombinationSequenceStep extends BaseStep implements StepInterface {
-  private static Class<?> PKG = CombinationSequenceMeta.class; // for i18n purposes, needed by Translator2!!
+  private static Class<?> PKG = CombinationSequenceMeta.class; 
+  
 
   private CombinationSequenceMeta meta;
   private CombinationSequenceData data;

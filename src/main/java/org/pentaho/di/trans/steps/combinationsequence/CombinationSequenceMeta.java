@@ -1,10 +1,4 @@
-/*! ******************************************************************************
- *
- * Pentaho Data Integration
- *
- * Copyright (C) 2002-2016 by Pentaho : http://www.pentaho.com
- *
- *******************************************************************************
+/*******************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with
@@ -19,6 +13,7 @@
  * limitations under the License.
  *
  ******************************************************************************/
+
 
 package org.pentaho.di.trans.steps.combinationsequence;
 
@@ -53,7 +48,7 @@ import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
 
 /*
- * Created on 30-06-2008
+ * Created on 30-06-2018
  * 
  *  Sequence mode example
  * 
@@ -73,14 +68,8 @@ import org.w3c.dom.Node;
 @InjectionSupported(localizationPrefix = "CombinationSequenceMeta.Injection.")
 
 public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInterface {
-	private static Class<?> PKG = CombinationSequenceMeta.class; // for i18n
-																	// purposes,
-																	// needed by
-																	// Translator2!!
+	private static Class<?> PKG = CombinationSequenceMeta.class; 
 
-	// purposes,
-	// needed by
-	// Translator2!!
 
 	@Injection(name = "MODE")
 	private CombinationSequenceMode mode;
@@ -98,7 +87,7 @@ public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInt
 	private String increment;
 
 	public CombinationSequenceMeta() {
-		super(); // allocate BaseStepMeta
+		super();
 	}
 
 	public CombinationSequenceMode getMode() {
@@ -193,25 +182,26 @@ public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInt
 				fieldName[i] = XMLHandler.getTagValue(fnode, "name");
 			}
 		} catch (Exception e) {
-			throw new KettleXMLException("Unable to load step info from XML", e);
+			throw new KettleXMLException(
+					BaseMessages.getString(PKG, "CombinationSequenceMeta.Exception.UnableToReadStepInfoFromXML"), e);
 		}
 	}
 
 	@Override
 	public String getXML() {
 		StringBuilder xml = new StringBuilder();
-		xml.append("      " + XMLHandler.addTagValue("mode", mode.name()));
-		xml.append("      " + XMLHandler.addTagValue("start", start));
-		xml.append("      " + XMLHandler.addTagValue("increment", increment));
-		xml.append("      " + XMLHandler.addTagValue("resultfieldName", resultfieldName));
+		xml.append(XMLHandler.addTagValue("mode", mode.name()));
+		xml.append(XMLHandler.addTagValue("start", start));
+		xml.append(XMLHandler.addTagValue("increment", increment));
+		xml.append(XMLHandler.addTagValue("resultfieldName", resultfieldName));
 
-		xml.append("    <fields>" + Const.CR);
+		xml.append("<fields>").append(Const.CR);
 		for (int i = 0; i < fieldName.length; i++) {
-			xml.append("      <field>" + Const.CR);
-			xml.append("        " + XMLHandler.addTagValue("name", fieldName[i]));
-			xml.append("      </field>" + Const.CR);
+			xml.append("<field>").append(Const.CR);
+			xml.append(XMLHandler.addTagValue("name", fieldName[i]));
+			xml.append("</field>").append(Const.CR);
 		}
-		xml.append("      </fields>" + Const.CR);
+		xml.append("</fields>").append(Const.CR);
 
 		return xml.toString();
 	}
@@ -242,7 +232,8 @@ public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInt
 				fieldName[i] = rep.getStepAttributeString(id_step, i, "field_name");
 			}
 		} catch (Exception e) {
-			throw new KettleException("Unexpected error reading step information from the repository", e);
+			throw new KettleException(
+					BaseMessages.getString(PKG, "CombinationSequenceMeta.Exception.UnableToReadRepository", id_step), e);
 		}
 	}
 
@@ -258,7 +249,7 @@ public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInt
 				rep.saveStepAttribute(id_transformation, id_step, i, "field_name", fieldName[i]);
 			}
 		} catch (Exception e) {
-			throw new KettleException("Unable to save step information to the repository for id_step=" + id_step, e);
+			throw new KettleException(BaseMessages.getString(PKG, "CombinationSequenceMeta.Exception.UnableToSaveRepository", id_step), e);
 		}
 	}
 
@@ -281,21 +272,21 @@ public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInt
 		String error_message = "";
 
 		if (Utils.isEmpty(resultfieldName)) {
-			error_message = BaseMessages.getString(PKG, "Meta.CheckResult.ResultFieldMissing");
+			error_message = BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.ResultFieldMissing");
 			cr = new CheckResult(CheckResult.TYPE_RESULT_ERROR, error_message, stepMeta);
 		} else {
-			error_message = BaseMessages.getString(PKG, "Meta.CheckResult.ResultFieldOK");
+			error_message = BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.ResultFieldOK");
 			cr = new CheckResult(CheckResult.TYPE_RESULT_OK, error_message, stepMeta);
 		}
 		remarks.add(cr);
 
 		if (prev == null || prev.size() == 0) {
 			cr = new CheckResult(CheckResult.TYPE_RESULT_WARNING,
-					BaseMessages.getString(PKG, "Meta.CheckResult.NotReceivingFields"), stepMeta);
+					BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.NotReceivingFields"), stepMeta);
 			remarks.add(cr);
 		} else {
 			cr = new CheckResult(CheckResult.TYPE_RESULT_OK,
-					BaseMessages.getString(PKG, "Meta.CheckResult.StepRecevingData", prev.size() + ""), stepMeta);
+					BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.StepRecevingData", prev.size() + ""), stepMeta);
 			remarks.add(cr);
 
 			boolean error_found = false;
@@ -310,18 +301,18 @@ public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInt
 				}
 			}
 			if (error_found) {
-				error_message = BaseMessages.getString(PKG, "Meta.CheckResult.FieldsFound", error_message);
+				error_message = BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.FieldsFound", error_message);
 
 				cr = new CheckResult(CheckResult.TYPE_RESULT_ERROR, error_message, stepMeta);
 				remarks.add(cr);
 			} else {
 				if (fieldName.length > 0) {
 					cr = new CheckResult(CheckResult.TYPE_RESULT_OK,
-							BaseMessages.getString(PKG, "Meta.CheckResult.AllFieldsFound"), stepMeta);
+							BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.AllFieldsFound"), stepMeta);
 					remarks.add(cr);
 				} else {
 					cr = new CheckResult(CheckResult.TYPE_RESULT_WARNING,
-							BaseMessages.getString(PKG, "Meta.CheckResult.NoFieldsEntered"), stepMeta);
+							BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.NoFieldsEntered"), stepMeta);
 					remarks.add(cr);
 				}
 			}

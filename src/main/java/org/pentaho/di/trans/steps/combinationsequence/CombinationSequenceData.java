@@ -1,10 +1,4 @@
-/*! ******************************************************************************
- *
- * Pentaho Data Integration
- *
- * Copyright (C) 2002-2013 by Pentaho : http://www.pentaho.com
- *
- *******************************************************************************
+/*******************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with
@@ -28,8 +22,8 @@ import org.pentaho.di.trans.step.BaseStepData;
 import org.pentaho.di.trans.step.StepDataInterface;
 
 /**
- * @author Samatar
- * @since 16-06-2008
+ * @author Nicolas ADMENT
+ * @since 23-09-2018
  *
  */
 public class CombinationSequenceData extends BaseStepData implements StepDataInterface {
