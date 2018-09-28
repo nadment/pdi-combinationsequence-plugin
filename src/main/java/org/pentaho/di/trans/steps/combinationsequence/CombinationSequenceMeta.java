@@ -195,13 +195,13 @@ public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInt
 		xml.append(XMLHandler.addTagValue("increment", increment));
 		xml.append(XMLHandler.addTagValue("resultfieldName", resultfieldName));
 
-		xml.append("<fields>").append(Const.CR);
+		xml.append("<fields>");
 		for (int i = 0; i < fieldName.length; i++) {
-			xml.append("<field>").append(Const.CR);
+			xml.append("<field>");
 			xml.append(XMLHandler.addTagValue("name", fieldName[i]));
-			xml.append("</field>").append(Const.CR);
+			xml.append("</field>");
 		}
-		xml.append("</fields>").append(Const.CR);
+		xml.append("</fields>");
 
 		return xml.toString();
 	}

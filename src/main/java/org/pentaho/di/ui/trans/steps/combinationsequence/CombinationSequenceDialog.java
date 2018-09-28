@@ -23,10 +23,7 @@
 package org.pentaho.di.ui.trans.steps.combinationsequence;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
@@ -70,21 +67,18 @@ import org.pentaho.di.ui.trans.step.TableItemInsertListener;
 public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSequenceMeta> {
   private static Class<?> PKG = CombinationSequenceMeta.class; // for i18n purposes, needed by Translator2!!
 
-  private Text wResult;
+  private Text txtResult;
   
-  private TextVar wStart;
+  private TextVar txtStart;
 
-  private TextVar wIncrement;
+  private TextVar txtIncrement;
 
-  private TableView wFields;
+  private TableView tblFields;
 
-  private Button wModeReset;
+  private Button btnModeReset;
 
-  private Button wModeIncrement;
+  private Button btnModeIncrement;
 
-  private Map<String, Integer> inputFields;
-
-  private ColumnInfo[] columnInfos;
 
   public static final String STRING_CHANGE_SEQUENCE_WARNING_PARAMETER = "ChangeSequenceSortWarning";
 
@@ -93,7 +87,7 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
 
     setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Shell.Title"));
 
-    inputFields = new HashMap<String, Integer>();
+   
   }
 
   @Override
@@ -101,22 +95,6 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
     return new Point(500, 500);
   }
 
-  protected void setComboBoxes() {
-    // Something was changed in the row.
-    //
-    final Map<String, Integer> fields = new HashMap<String, Integer>();
-
-    // Add the currentMeta fields...
-    fields.putAll(inputFields);
-
-    Set<String> keySet = fields.keySet();
-    List<String> entries = new ArrayList<String>(keySet);
-
-    String[] fieldNames = entries.toArray(new String[entries.size()]);
-
-    Const.sortStrings(fieldNames);
-    columnInfos[0].setComboValues(fieldNames);
-  }
 
   protected void onGetFields() {
     try {
@@ -128,7 +106,7 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
             return true;
           }
         };
-        BaseStepDialog.getFieldsFromPrevious(r, wFields, 1, new int[] { 1 }, new int[] {}, -1, -1, insertListener);
+        BaseStepDialog.getFieldsFromPrevious(r, tblFields, 1, new int[] { 1 }, new int[] {}, -1, -1, insertListener);
       }
     } catch (KettleException ke) {
       new ErrorDialog(shell, BaseMessages.getString(PKG, "System.Dialog.GetFieldsFailed.Title"),
@@ -143,15 +121,15 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
   protected void loadMeta(final CombinationSequenceMeta meta) {
 
     if ( meta.getMode()==CombinationSequenceMode.RESET )
-      wModeReset.setSelection(true);
+      btnModeReset.setSelection(true);
     else 
-      wModeIncrement.setSelection(true);
+      btnModeIncrement.setSelection(true);
     
-    wStart.setText(Const.NVL(meta.getStart(), "1"));
-    wIncrement.setText(Const.NVL(meta.getIncrement(), "1"));
-    wResult.setText(Const.NVL(meta.getResultFieldName(), "result"));
+    txtStart.setText(Const.NVL(meta.getStart(), "1"));
+    txtIncrement.setText(Const.NVL(meta.getIncrement(), "1"));
+    txtResult.setText(Const.NVL(meta.getResultFieldName(), "result"));
 
-    Table table = wFields.table;
+    Table table = tblFields.table;
     if (meta.getFieldName().length > 0) {
       table.removeAll();
     }
@@ -161,8 +139,8 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
       ti.setText(1, meta.getFieldName()[i]);
     }
 
-    wFields.setRowNums();
-    wFields.optWidth(true);
+    tblFields.setRowNums();
+    tblFields.optWidth(true);
 
     wStepname.selectAll();
     wStepname.setFocus();
@@ -174,15 +152,15 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
 
     
     
-    meta.setMode( wModeReset.getSelection() ? CombinationSequenceMode.RESET: CombinationSequenceMode.INCREMENT );
-    meta.setStart(wStart.getText());
-    meta.setIncrement(wIncrement.getText());
-    meta.setResultFieldName(wResult.getText());
+    meta.setMode( btnModeReset.getSelection() ? CombinationSequenceMode.RESET: CombinationSequenceMode.INCREMENT );
+    meta.setStart(txtStart.getText());
+    meta.setIncrement(txtIncrement.getText());
+    meta.setResultFieldName(txtResult.getText());
 
-    int nrfields = wFields.nrNonEmpty();
+    int nrfields = tblFields.nrNonEmpty();
     meta.allocate(nrfields);
     for (int i = 0; i < nrfields; i++) {
-      TableItem ti = wFields.getNonEmpty(i);
+      TableItem ti = tblFields.getNonEmpty(i);
       //CHECKSTYLE:Indentation:OFF
       meta.getFieldName()[i] = ti.getText(1);
     }
@@ -216,60 +194,60 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
     group.setLayoutData(new FormDataBuilder().top().fullWidth().result());
     props.setLook(group);
 
-    wModeReset = new Button(group, SWT.RADIO);
-    wModeReset.setText(BaseMessages.getString(PKG,"CombinationSequenceDialog.Mode.Reset.Label"));
-    wModeReset.addSelectionListener(lsDef);
-    props.setLook(wModeReset);
+    btnModeReset = new Button(group, SWT.RADIO);
+    btnModeReset.setText(BaseMessages.getString(PKG,"CombinationSequenceDialog.Mode.Reset.Label"));
+    btnModeReset.addSelectionListener(lsDef);
+    props.setLook(btnModeReset);
 
-    wModeIncrement = new Button(group, SWT.RADIO);
-    wModeIncrement.setText(BaseMessages.getString(PKG,"CombinationSequenceDialog.Mode.Increment.Label"));
-    wModeIncrement.addSelectionListener(lsDef);
-    props.setLook(wModeIncrement);
+    btnModeIncrement = new Button(group, SWT.RADIO);
+    btnModeIncrement.setText(BaseMessages.getString(PKG,"CombinationSequenceDialog.Mode.Increment.Label"));
+    btnModeIncrement.addSelectionListener(lsDef);
+    props.setLook(btnModeIncrement);
 
     // Result line...
-    Label wlResult = new Label(parent, SWT.NONE);
-    wlResult.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Result.Label"));
-    wlResult.setLayoutData(new FormDataBuilder().top(group, Const.MARGIN*2).fullWidth().result());
-    props.setLook(wlResult);
+    Label lblResult = new Label(parent, SWT.NONE);
+    lblResult.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Result.Label"));
+    lblResult.setLayoutData(new FormDataBuilder().top(group, Const.MARGIN*2).fullWidth().result());
+    props.setLook(lblResult);
 
-    wResult = new Text(parent, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
-    wResult.setLayoutData(new FormDataBuilder().top(wlResult, Const.MARGIN).fullWidth().result()); 
-    wResult.addModifyListener(lsMod);
-    props.setLook(wResult);
+    txtResult = new Text(parent, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
+    txtResult.setLayoutData(new FormDataBuilder().top(lblResult, Const.MARGIN).fullWidth().result()); 
+    txtResult.addModifyListener(lsMod);
+    props.setLook(txtResult);
 
     // Start
-    Label wlStart = new Label(parent, SWT.LEFT);
-    wlStart.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Start.Label"));
-    wlStart.setLayoutData(new FormDataBuilder().top(wResult, Const.MARGIN*2).fullWidth().result());
-    props.setLook(wlStart);
+    Label lblStart = new Label(parent, SWT.LEFT);
+    lblStart.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Start.Label"));
+    lblStart.setLayoutData(new FormDataBuilder().top(txtResult, Const.MARGIN*2).fullWidth().result());
+    props.setLook(lblStart);
     
-    wStart = new TextVar(transMeta, parent, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
-    wStart.setLayoutData(new FormDataBuilder().top(wlStart, Const.MARGIN).fullWidth().result());
-    wStart.addModifyListener(lsMod);
-    props.setLook(wStart);
+    txtStart = new TextVar(transMeta, parent, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
+    txtStart.setLayoutData(new FormDataBuilder().top(lblStart, Const.MARGIN).fullWidth().result());
+    txtStart.addModifyListener(lsMod);
+    props.setLook(txtStart);
     
     // Increment
-    Label wlIncrement = new Label(parent, SWT.LEFT);
-    wlIncrement.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Increment.Label"));
-    wlIncrement.setLayoutData(new FormDataBuilder().top(wStart, Const.MARGIN*2).fullWidth().result());   
-    props.setLook(wlIncrement);
+    Label lblIncrement = new Label(parent, SWT.LEFT);
+    lblIncrement.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Increment.Label"));
+    lblIncrement.setLayoutData(new FormDataBuilder().top(txtStart, Const.MARGIN*2).fullWidth().result());   
+    props.setLook(lblIncrement);
         
-    wIncrement = new TextVar(transMeta, parent, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
-    wIncrement.setLayoutData(new FormDataBuilder().top(wlIncrement, Const.MARGIN).fullWidth().result());
-    wIncrement.addModifyListener(lsMod);
-    props.setLook(wIncrement);
+    txtIncrement = new TextVar(transMeta, parent, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
+    txtIncrement.setLayoutData(new FormDataBuilder().top(lblIncrement, Const.MARGIN).fullWidth().result());
+    txtIncrement.addModifyListener(lsMod);
+    props.setLook(txtIncrement);
     
     // Table with fields
-    Label wlFields = new Label(parent, SWT.LEFT);
-    wlFields.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Fields.Label"));
-    wlFields.setLayoutData(new FormDataBuilder().top(wIncrement, Const.MARGIN*2).fullWidth().result());
+    Label lblFields = new Label(parent, SWT.LEFT);
+    lblFields.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Fields.Label"));
+    lblFields.setLayoutData(new FormDataBuilder().top(txtIncrement, Const.MARGIN*2).fullWidth().result());
     
-    props.setLook(wlFields);
+    props.setLook(lblFields);
     
     // Button Get fields
     wGet = new Button(parent, SWT.PUSH);
     wGet.setText(BaseMessages.getString(PKG, "System.Button.GetFields"));
-    wGet.setLayoutData(new FormDataBuilder().top(wlFields, Const.MARGIN).right().result());
+    wGet.setLayoutData(new FormDataBuilder().top(lblFields, Const.MARGIN).right().result());
     wGet.addListener(SWT.Selection, new Listener() {
       @Override
       public void handleEvent(Event e) {
@@ -280,45 +258,51 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
     final int FieldsCols = 1;
     final int FieldsRows = this.getStepMeta().getFieldName().length;
 
-    columnInfos = new ColumnInfo[FieldsCols];
-    columnInfos[0] = new ColumnInfo(BaseMessages.getString(PKG, "CombinationSequenceDialog.Fieldname.Column"),
+    ColumnInfo[] columns = new ColumnInfo[FieldsCols];
+    columns[0] = new ColumnInfo(BaseMessages.getString(PKG, "CombinationSequenceDialog.Fieldname.Column"),
         ColumnInfo.COLUMN_TYPE_CCOMBO, new String[] { "" }, false);
-    wFields = new TableView(transMeta, parent, SWT.BORDER | SWT.FULL_SELECTION | SWT.MULTI, columnInfos, FieldsRows,
+    tblFields = new TableView(transMeta, parent, SWT.BORDER | SWT.FULL_SELECTION | SWT.MULTI, columns, FieldsRows,
         lsMod, props);
 
-    this.wFields.setLayoutData(
-        new FormDataBuilder().left().right(wGet, -Const.MARGIN).top(wlFields, Const.MARGIN).bottom().result());
+    this.tblFields.setLayoutData(
+        new FormDataBuilder().left().right(wGet, -Const.MARGIN).top(lblFields, Const.MARGIN).bottom().result());
 
 
-    this.wFields.getTable().addListener(SWT.Resize, new ColumnsResizer(4, 95));
+    this.tblFields.getTable().addListener(SWT.Resize, new ColumnsResizer(4, 95));
+    
     //
-    // Search the fields in the background
+    // Search the inputs fields in the background
     //
-
     final Runnable runnable = new Runnable() {
       public void run() {
         StepMeta stepMeta = transMeta.findStep(stepname);
         if (stepMeta != null) {
           try {
             RowMetaInterface row = transMeta.getPrevStepFields(stepMeta);
-            if (row != null) {
-              // Remember these fields...
-              for (int i = 0; i < row.size(); i++) {
-                inputFields.put(row.getValueMeta(i).getName(), new Integer(i));
-              }
+            final List<String> inputFields = new ArrayList<>();
+			
+			
+			if (row != null) {
 
-              setComboBoxes();
+				
+				for (ValueMetaInterface vm : row.getValueMetaList()) {
+					inputFields.add(vm.getName());
+				}					
+				
+				// Sort by name
+				String[] fieldNames = Const.sortStrings(inputFields.toArray(new String[0]));
+				columns[0].setComboValues(fieldNames);
             }
 
             // Dislay in red missing field names
             Display.getDefault().asyncExec(new Runnable() {
               public void run() {
-                if (!wFields.isDisposed()) {
-                  for (int i = 0; i < wFields.table.getItemCount(); i++) {
-                    TableItem it = wFields.table.getItem(i);
-                    if (!Utils.isEmpty(it.getText(1))) {
-                      if (!inputFields.containsKey(it.getText(1))) {
-                        it.setBackground(GUIResource.getInstance().getColorRed());
+                if (!tblFields.isDisposed()) {
+                  for (int i = 0; i < tblFields.table.getItemCount(); i++) {
+                    TableItem item = tblFields.table.getItem(i);
+                    if (!Utils.isEmpty(item.getText(1))) {
+                      if (!inputFields.contains(item.getText(1))) {
+                        item.setBackground(GUIResource.getInstance().getColorRed());
                       }
                     }
                   }
