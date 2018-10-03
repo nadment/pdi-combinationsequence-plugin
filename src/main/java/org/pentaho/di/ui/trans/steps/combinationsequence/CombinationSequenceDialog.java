@@ -85,7 +85,7 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
   public CombinationSequenceDialog(Shell parent, Object in, TransMeta tr, String sname) {
     super(parent, (BaseStepMeta) in, tr, sname);
 
-    setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Shell.Title"));
+    setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Shell.Title"));  //$NON-NLS-1$
 
    
   }
@@ -102,15 +102,15 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
       if (r != null) {
         TableItemInsertListener insertListener = new TableItemInsertListener() {
           public boolean tableItemInserted(TableItem tableItem, ValueMetaInterface v) {
-            tableItem.setText(2, BaseMessages.getString(PKG, "System.Combo.Yes"));
+            tableItem.setText(2, BaseMessages.getString(PKG, "System.Combo.Yes"));  //$NON-NLS-1$
             return true;
           }
         };
         BaseStepDialog.getFieldsFromPrevious(r, tblFields, 1, new int[] { 1 }, new int[] {}, -1, -1, insertListener);
       }
     } catch (KettleException ke) {
-      new ErrorDialog(shell, BaseMessages.getString(PKG, "System.Dialog.GetFieldsFailed.Title"),
-          BaseMessages.getString(PKG, "System.Dialog.GetFieldsFailed.Message"), ke);
+      new ErrorDialog(shell, BaseMessages.getString(PKG, "System.Dialog.GetFieldsFailed.Title"),  //$NON-NLS-1$
+          BaseMessages.getString(PKG, "System.Dialog.GetFieldsFailed.Message"), ke);  //$NON-NLS-1$
     }
 
   }
@@ -186,7 +186,7 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
 
     // Mode
     Group group = new Group(parent, SWT.SHADOW_IN);
-    group.setText(BaseMessages.getString(PKG,"CombinationSequenceDialog.Mode.Label"));
+    group.setText(BaseMessages.getString(PKG,"CombinationSequenceDialog.Mode.Label"));  //$NON-NLS-1$
     RowLayout rowLayout = new RowLayout(SWT.VERTICAL);
     rowLayout.marginWidth = 10;
     rowLayout.marginHeight = 10;    
@@ -195,18 +195,18 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
     props.setLook(group);
 
     btnModeReset = new Button(group, SWT.RADIO);
-    btnModeReset.setText(BaseMessages.getString(PKG,"CombinationSequenceDialog.Mode.Reset.Label"));
+    btnModeReset.setText(BaseMessages.getString(PKG,"CombinationSequenceDialog.Mode.Reset.Label"));  //$NON-NLS-1$
     btnModeReset.addSelectionListener(lsDef);
     props.setLook(btnModeReset);
 
     btnModeIncrement = new Button(group, SWT.RADIO);
-    btnModeIncrement.setText(BaseMessages.getString(PKG,"CombinationSequenceDialog.Mode.Increment.Label"));
+    btnModeIncrement.setText(BaseMessages.getString(PKG,"CombinationSequenceDialog.Mode.Increment.Label"));  //$NON-NLS-1$
     btnModeIncrement.addSelectionListener(lsDef);
     props.setLook(btnModeIncrement);
 
     // Result line...
     Label lblResult = new Label(parent, SWT.NONE);
-    lblResult.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Result.Label"));
+    lblResult.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Result.Label"));  //$NON-NLS-1$
     lblResult.setLayoutData(new FormDataBuilder().top(group, Const.MARGIN*2).fullWidth().result());
     props.setLook(lblResult);
 
@@ -217,7 +217,7 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
 
     // Start
     Label lblStart = new Label(parent, SWT.LEFT);
-    lblStart.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Start.Label"));
+    lblStart.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Start.Label"));  //$NON-NLS-1$
     lblStart.setLayoutData(new FormDataBuilder().top(txtResult, Const.MARGIN*2).fullWidth().result());
     props.setLook(lblStart);
     
@@ -228,7 +228,7 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
     
     // Increment
     Label lblIncrement = new Label(parent, SWT.LEFT);
-    lblIncrement.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Increment.Label"));
+    lblIncrement.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Increment.Label"));  //$NON-NLS-1$
     lblIncrement.setLayoutData(new FormDataBuilder().top(txtStart, Const.MARGIN*2).fullWidth().result());   
     props.setLook(lblIncrement);
         
@@ -239,14 +239,14 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
     
     // Table with fields
     Label lblFields = new Label(parent, SWT.LEFT);
-    lblFields.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Fields.Label"));
+    lblFields.setText(BaseMessages.getString(PKG, "CombinationSequenceDialog.Fields.Label"));  //$NON-NLS-1$
     lblFields.setLayoutData(new FormDataBuilder().top(txtIncrement, Const.MARGIN*2).fullWidth().result());
     
     props.setLook(lblFields);
     
     // Button Get fields
     wGet = new Button(parent, SWT.PUSH);
-    wGet.setText(BaseMessages.getString(PKG, "System.Button.GetFields"));
+    wGet.setText(BaseMessages.getString(PKG, "System.Button.GetFields"));  //$NON-NLS-1$
     wGet.setLayoutData(new FormDataBuilder().top(lblFields, Const.MARGIN).right().result());
     wGet.addListener(SWT.Selection, new Listener() {
       @Override
@@ -259,7 +259,7 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
     final int FieldsRows = this.getStepMeta().getFieldName().length;
 
     ColumnInfo[] columns = new ColumnInfo[FieldsCols];
-    columns[0] = new ColumnInfo(BaseMessages.getString(PKG, "CombinationSequenceDialog.Fieldname.Column"),
+    columns[0] = new ColumnInfo(BaseMessages.getString(PKG, "CombinationSequenceDialog.Fieldname.Column"),  //$NON-NLS-1$
         ColumnInfo.COLUMN_TYPE_CCOMBO, new String[] { "" }, false);
     tblFields = new TableView(transMeta, parent, SWT.BORDER | SWT.FULL_SELECTION | SWT.MULTI, columns, FieldsRows,
         lsMod, props);
@@ -312,7 +312,7 @@ public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSeq
 
           } catch (KettleException e) {
             logError(
-                BaseMessages.getString(PKG, "CombinationSequenceDialog.ErrorGettingPreviousFields", e.getMessage()));
+                BaseMessages.getString(PKG, "CombinationSequenceDialog.ErrorGettingPreviousFields", e.getMessage()));  //$NON-NLS-1$
           }
         }
       }
