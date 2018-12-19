@@ -68,7 +68,7 @@ import org.w3c.dom.Node;
 @InjectionSupported(localizationPrefix = "CombinationSequenceMeta.Injection.")
 
 public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInterface {
-	private static Class<?> PKG = CombinationSequenceMeta.class; 
+	private static final Class<?> PKG = CombinationSequenceMeta.class; 
 
 
 	@Injection(name = "MODE")
@@ -272,21 +272,21 @@ public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInt
 		String error_message = "";
 
 		if (Utils.isEmpty(resultfieldName)) {
-			error_message = BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.ResultFieldMissing");
+			error_message = BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.ResultFieldMissing");  //$NON-NLS-1$
 			cr = new CheckResult(CheckResult.TYPE_RESULT_ERROR, error_message, stepMeta);
 		} else {
-			error_message = BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.ResultFieldOK");
+			error_message = BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.ResultFieldOK");  //$NON-NLS-1$
 			cr = new CheckResult(CheckResult.TYPE_RESULT_OK, error_message, stepMeta);
 		}
 		remarks.add(cr);
 
 		if (prev == null || prev.size() == 0) {
 			cr = new CheckResult(CheckResult.TYPE_RESULT_WARNING,
-					BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.NotReceivingFields"), stepMeta);
+					BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.NotReceivingFields"), stepMeta);  //$NON-NLS-1$
 			remarks.add(cr);
 		} else {
 			cr = new CheckResult(CheckResult.TYPE_RESULT_OK,
-					BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.StepRecevingData", prev.size() + ""), stepMeta);
+					BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.StepRecevingData", prev.size() + ""), stepMeta);  //$NON-NLS-1$
 			remarks.add(cr);
 
 			boolean error_found = false;
@@ -308,12 +308,12 @@ public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInt
 			} else {
 				if (fieldName.length > 0) {
 					cr = new CheckResult(CheckResult.TYPE_RESULT_OK,
-							BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.AllFieldsFound"), stepMeta);
+							BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.AllFieldsFound"), stepMeta);  //$NON-NLS-1$
 					remarks.add(cr);
 				} else {
 					cr = new CheckResult(CheckResult.TYPE_RESULT_WARNING,
-							BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.NoFieldsEntered"), stepMeta);
-					remarks.add(cr);
+							BaseMessages.getString(PKG, "CombinationSequenceMeta.CheckResult.NoFieldsEntered"), stepMeta);  //$NON-NLS-1$
+					remarks.add(cr); 
 				}
 			}
 
@@ -322,11 +322,11 @@ public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInt
 		// See if we have input streams leading to this step!
 		if (input.length > 0) {
 			cr = new CheckResult(CheckResult.TYPE_RESULT_OK,
-					BaseMessages.getString(PKG, "Meta.CheckResult.StepRecevingData2"), stepMeta);
+					BaseMessages.getString(PKG, "Meta.CheckResult.StepRecevingData2"), stepMeta);  //$NON-NLS-1$
 			remarks.add(cr);
 		} else {
 			cr = new CheckResult(CheckResult.TYPE_RESULT_ERROR,
-					BaseMessages.getString(PKG, "Meta.CheckResult.NoInputReceivedFromOtherSteps"), stepMeta);
+					BaseMessages.getString(PKG, "Meta.CheckResult.NoInputReceivedFromOtherSteps"), stepMeta);  //$NON-NLS-1$
 			remarks.add(cr);
 		}
 	}

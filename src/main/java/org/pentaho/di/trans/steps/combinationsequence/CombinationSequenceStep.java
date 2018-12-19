@@ -38,7 +38,7 @@ import org.pentaho.di.trans.step.StepMetaInterface;
  */
 
 public class CombinationSequenceStep extends BaseStep implements StepInterface {
-  private static Class<?> PKG = CombinationSequenceMeta.class; 
+  private static final Class<?> PKG = CombinationSequenceMeta.class; 
   
 
   private CombinationSequenceMeta meta;
