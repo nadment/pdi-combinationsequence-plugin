@@ -14,7 +14,7 @@
  *
  ******************************************************************************/
 
-package org.pentaho.di.trans.steps.combinationsequence;
+package org.kettle.trans.steps.combinationsequence;
 
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;

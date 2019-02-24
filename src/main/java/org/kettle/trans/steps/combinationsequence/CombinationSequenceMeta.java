@@ -15,7 +15,7 @@
  ******************************************************************************/
 
 
-package org.pentaho.di.trans.steps.combinationsequence;
+package org.kettle.trans.steps.combinationsequence;
 
 import java.util.List;
 
@@ -62,9 +62,7 @@ import org.w3c.dom.Node;
  *    D       C       1      4
  */
 
-@Step(id = "CombinationSequence", image = "combinationsequence.svg", i18nPackageName = "org.pentaho.di.trans.steps.combinationsequence", name = "CombinationSequence.Name", description = "CombinationSequence.Description", categoryDescription = "i18n:org.pentaho.di.trans.step:BaseStep.Category.Transform",
-		documentationUrl = "https://github.com/nadment/pdi-combinationsequence-plugin/wiki")
-
+@Step(id = "CombinationSequence", name = "CombinationSequence.Name", description = "CombinationSequence.Description", image = "combinationsequence.svg", i18nPackageName = "org.kettle.trans.steps.combinationsequence", categoryDescription = "i18n:org.pentaho.di.trans.step:BaseStep.Category.Transform")
 @InjectionSupported(localizationPrefix = "CombinationSequenceMeta.Injection.")
 
 public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInterface {

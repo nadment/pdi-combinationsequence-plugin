@@ -14,7 +14,7 @@
  *
  ******************************************************************************/
 
-package org.pentaho.di.ui.trans.steps.combinationsequence;
+package org.kettle.ui.trans.steps.combinationsequence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
+import org.kettle.trans.steps.combinationsequence.CombinationSequenceMeta;
+import org.kettle.trans.steps.combinationsequence.CombinationSequenceMode;
+import org.kettle.ui.dialog.AbstractStepDialog;
 import org.pentaho.di.core.Const;
+import org.pentaho.di.core.annotations.PluginDialog;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
@@ -45,8 +49,6 @@ import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.BaseStepMeta;
 import org.pentaho.di.trans.step.StepMeta;
-import org.pentaho.di.trans.steps.combinationsequence.CombinationSequenceMeta;
-import org.pentaho.di.trans.steps.combinationsequence.CombinationSequenceMode;
 import org.pentaho.di.ui.core.FormDataBuilder;
 import org.pentaho.di.ui.core.dialog.ErrorDialog;
 import org.pentaho.di.ui.core.gui.GUIResource;
@@ -54,10 +56,10 @@ import org.pentaho.di.ui.core.widget.ColumnInfo;
 import org.pentaho.di.ui.core.widget.ColumnsResizer;
 import org.pentaho.di.ui.core.widget.TableView;
 import org.pentaho.di.ui.core.widget.TextVar;
-import org.pentaho.di.ui.dialog.AbstractStepDialog;
 import org.pentaho.di.ui.trans.step.BaseStepDialog;
 import org.pentaho.di.ui.trans.step.TableItemInsertListener;
 
+@PluginDialog(id = "CombinationSequence", image = "combinationsequence.svg", pluginType = PluginDialog.PluginType.STEP, documentationUrl = "https://github.com/nadment/pdi-combinationsequence-plugin/wiki")
 public class CombinationSequenceDialog extends AbstractStepDialog<CombinationSequenceMeta> {
   private static Class<?> PKG = CombinationSequenceMeta.class; // for i18n purposes, needed by Translator2!!
 

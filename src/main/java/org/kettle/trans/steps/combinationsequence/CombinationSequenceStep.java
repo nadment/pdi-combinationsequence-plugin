@@ -14,7 +14,7 @@
  *
  ******************************************************************************/
 
-package org.pentaho.di.trans.steps.combinationsequence;
+package org.kettle.trans.steps.combinationsequence;
 
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleException;

@@ -15,7 +15,7 @@
  ******************************************************************************/
 
 
-package org.pentaho.di.trans.steps.combinationsequence;
+package org.kettle.trans.steps.combinationsequence;
 
 public enum CombinationSequenceMode {
 	INCREMENT, RESET;

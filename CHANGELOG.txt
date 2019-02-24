@@ -1,2 +1,6 @@
+1.0.1 # nadment 2019/02/24
+- move package to org.kettle
+- add annotation @PluginDialog 
+
 1.0.0 # nadment 2018/09/11
 - Initial release
