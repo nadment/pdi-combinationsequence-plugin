@@ -19,6 +19,7 @@ package org.kettle.trans.steps.combinationsequence;
 
 import java.util.List;
 
+import org.kettle.ui.trans.steps.combinationsequence.CombinationSequenceDialog;
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
@@ -128,6 +129,12 @@ public class CombinationSequenceMeta extends BaseStepMeta implements StepMetaInt
 		return retval;
 	}
 
+	// For compatibility with 7.x
+	@Override
+	public String getDialogClassName() {
+		return CombinationSequenceDialog.class.getName();
+	}
+	
 	public void allocate(int nrfields) {
 		fieldName = new String[nrfields];
 	}
